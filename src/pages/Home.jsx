@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 import "./Home.css";
 
+
 const Home = () => {
     const [name, SetName] = useState("");
     const [room, SetRoom] = useState("");
@@ -125,10 +126,12 @@ const Home = () => {
                     </div>
 
                     {/* ADMIN USER (SMALL CORNER POPUP) */}
+                  
                     <div className="admin-popup">
                         <video ref={localVideoRef} autoPlay playsInline muted className="local-video" />
                         <div className="local-name-label">Me: {name}</div>
                     </div>
+                   
 
                     {/* CONTROL BAR */}
                     <div className="control-bar">

@@ -84,13 +84,13 @@
 .remote-video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Remote takes up full space */
+  object-fit: contain; /* Remote takes up full space */
 }
 
 /* 5. The Admin Popup (Picture-in-Picture) */
 .admin-popup {
   position: absolute;
-  top: 1.5rem;
+  bottom: 1.5rem;
   right: 1.5rem;
   width: 240px;
   aspect-ratio: 16 / 9; /* Maintains consistent shape */
@@ -105,7 +105,7 @@
 .local-video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* This makes the admin video fit the box perfectly */
+  object-fit: contain; /* This makes the admin video fit the box perfectly */
   transform: scaleX(-1); /* Mirror self */
 }
 
@@ -155,5 +155,21 @@
 .icon-btn.off { background: var(--danger-color); }
 .icon-btn.hangup { background: var(--danger-color); font-weight: bold; }
 
-/* 7. Responsive adjustments */
-@media (max-width
+@media (max-width: 600px) {
+  
+  /* Local User: 40% of height */
+  .admin-popup {
+    position: relative; /* Reverts from absolute to part of the stack */
+    bottom: 1.4rem;
+    left: auto;
+    width: 100%;
+    height: 40vh;
+    aspect-ratio: auto;
+    border-radius: 0;
+    border: none;
+    border-top: 2px solid #333;
+    transform: none !important; /* Disables dragging on mobile for the split view */
+  }
+
+  
+}
