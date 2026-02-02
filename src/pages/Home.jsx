@@ -1,12 +1,15 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import "./Home.css";
+import Draggable from "react-draggable";
+
 
 const Home = () => {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
   const [newUser, setNewUser] = useState("");
   const [joined, setJoined] = useState(false);
+  const adminPopupRef = useRef(null);
 
   // Hardware states
   const [isMicOn, setIsMicOn] = useState(true);
@@ -193,18 +196,21 @@ const Home = () => {
           </div>
 
           {/* LOCAL USER (ADMIN POPUP) */}
-          <div className="admin-popup">
-            <video
-              ref={localVideoRef}
-              autoPlay
-              playsInline
-              muted
-              className="local-video"
-            />
-            <div className="label-badge local-name-label">
-              Me: {name}
+          <Draggable bounds = "parent" nodeRef={adminPopupRef}>
+            <div className="admin-popup" ref={adminPopupRef}>
+              <video
+                ref={localVideoRef}
+                autoPlay
+                playsInline
+                muted
+                className="local-video"
+              />
+              <div className="label-badge local-name-label">
+                Me: {name}
+              </div>
             </div>
-          </div>
+
+          </Draggable>
 
           {/* CONTROLS */}
           <div className="control-bar">
